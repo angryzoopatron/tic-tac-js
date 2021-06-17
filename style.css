@@ -1,9 +1,10 @@
+html,
 body {
-    text-align: center;
+    font-family: "Open Sans Condensed", sans-serif;
 }
 
 td {
-    border: 2px solid black;
+    border: 3px solid black;
     height: 50px;
     width: 50px;
     text-align: center;
@@ -14,6 +15,23 @@ tr:hover {
     cursor: pointer;
 }
 
-#center {
-    margin: auto;
+table {
+    color: royalblue;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.center {
+    text-align: center;
+}
+
+button {
+    border: 2px solid black;
+    transition: all 0.5s ease-in-out;
+}
+
+button:hover {
+    border: 5px solid black;
+    font-size: 25px;
+    background-color: tomato;
 }
