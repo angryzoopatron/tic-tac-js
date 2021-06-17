@@ -4,34 +4,21 @@ let gameActive = true;
 let currentPlayer = 'X';
 let gameState = ['', '', '', '', '', '', '', '', ''];
 
+const winningConditions = [
+    [0, 1, 2],
+    [3, 4, 5],
+    [6, 7, 8],
+    [0, 3, 6],
+    [1, 4, 7],
+    [2, 5, 8],
+    [0, 4, 8],
+    [2, 4, 6]
+];
+
 const winner = () => `${currentPlayer} has won!`;
 const draw = () => `DRAW!`
 const playerTurn = () => `It's ${currentPlayer}'s turn`;
 
-const tableContainer = document.createElement('div');
-const myHTML = `
-  <table id="center">
-  <tr id="top-row">
-      <td data-cell-index="0" class="cell"></td>
-      <td data-cell-index="1" class="cell"></td>
-      <td data-cell-index="2" class="cell"></td>
-  </tr>
-  <tr id="mid-row">
-      <td data-cell-index="3" class="cell"></td>
-      <td data-cell-index="4" class="cell"></td>
-      <td data-cell-index="5" class="cell"></td>
-  </tr>
-  <tr id="bot-row">
-      <td data-cell-index="6" class="cell"></td>
-      <td data-cell-index="7" class="cell"></td>
-      <td data-cell-index="8" class="cell"></td>
-  </tr>
-  </table>
-`;
-
-const myFragment = document.createRange().createContextualFragment(myHTML);
-tableContainer.appendChild(myFragment);
-document.body.prepend(tableContainer);
 
 gameStatus.innerHTML = playerTurn();
 
@@ -42,11 +29,39 @@ function handleCell(clickedCell, clickedIndex) {
 
 function handlePlayerTurn() {
     currentPlayer = currentPlayer === "X" ? "O" : "X";
-    gameStatus.innerHTML = currentPlayer;
+    gameStatus.innerHTML = `${currentPlayer}'s turn`;
 }
 
 function handleResults() {
+    let roundWon = false;
+    for (let i = 0; i <= 7; i++) {
+        const winCondition = winningConditions[i];
+        let a = gameState[winCondition[0]];
+        let b = gameState[winCondition[1]];
+        let c = gameState[winCondition[2]];
+        if (a === '' || b === '' || c === '') {
+            continue;
+        }
 
+        if (a === b && b === c) {
+            roundWon = true;
+            break;
+        }
+    }
+    if (roundWon) {
+        gameStatus.innerHTML = winner();
+        gameActive = false;
+        return;
+    }
+
+    let gameDraw = !gameState.includes("");
+    if (gameDraw) {
+        gameStatus.innerHTML = draw();
+        gameActive = false;
+        return;
+    }
+
+    handlePlayerTurn();
 }
 
 function handleClick(e) {
@@ -76,5 +91,3 @@ document.querySelector('.restart').addEventListener('click', handleRestart);
 
 
 // https://dev.to/bornasepic/pure-and-simple-tic-tac-toe-with-javascript-4pgn
-
-// https://github.com/BornaSepic/Tic-Tac-Toe/blob/master/script.js
