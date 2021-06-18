@@ -86,8 +86,6 @@ function handleRestart(e) {
     document.querySelectorAll('.cell').forEach(cell => cell.innerHTML = "");
 }
 
+
 document.querySelectorAll('.cell').forEach(cell => cell.addEventListener('click', handleClick));
 document.querySelector('.restart').addEventListener('click', handleRestart);
-
-
-// https://dev.to/bornasepic/pure-and-simple-tic-tac-toe-with-javascript-4pgn
