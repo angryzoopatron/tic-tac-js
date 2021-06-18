@@ -1,12 +1,21 @@
 html,
 body {
+    background-color: #4d774e;
     font-family: "Open Sans Condensed", sans-serif;
+    font-size: xx-large;
+}
+
+h1,
+h2 {
+    color: #ffffff;
 }
 
 td {
-    border: 3px solid black;
-    height: 50px;
-    width: 50px;
+    border: 3px solid #ffffff;
+    border-radius: 10px;
+    color: #ffdf6c;
+    height: 100px;
+    width: 100px;
     text-align: center;
     font-size: 2rem;
 }
@@ -15,23 +24,25 @@ tr:hover {
     cursor: pointer;
 }
 
+.details {
+    text-align: center;
+    position: relative;
+}
+
 table {
-    color: royalblue;
     margin-left: auto;
     margin-right: auto;
 }
 
-.center {
-    text-align: center;
-}
-
 button {
     border: 2px solid black;
-    transition: all 0.5s ease-in-out;
+    height: 100px;
+    width: 200px;
+    font-size: 23px;
 }
 
 button:hover {
-    border: 5px solid black;
+    border: 4px solid black;
     font-size: 25px;
     background-color: tomato;
 }
